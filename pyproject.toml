@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "algobegin"
+version = "0.1.0"
+description = ""
+authors = ["Nischal Gautam <nischal1024@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+alpaca-py = "^0.8.2"
+matplotlib = "^3.7.1"
+pandas = "1.5.3"
+pandas-datareader = "^0.10.0"
+quantstats = "^0.0.61"
+requests = "^2.31.0"
+yfinance = "^0.2.22"
+python-dotenv = "^1.0.0"
+
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
