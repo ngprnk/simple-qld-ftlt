@@ -2,21 +2,9 @@
 # https://app.composer.trade/symphony/XJgqdL5MHtxMU7NRt2jS/details
 import generate
 import buyingfunc
+import sorting_util
 
-
-AMOUNT_ALLOCATED = 50000
-
-def sortingFunction(indicator, window_length, number_of_items_to_sort, stockClass = []):
-  if indicator=="RSI":
-    stocks = []
-    for item in stockClass:
-      rsi_val = item.get_rsi_value(window_length=window_length)
-      stocks.append({"item": item, "val" : rsi_val})
-
-    aa = sorted(stocks,key=lambda x: x.get('val'))
-    return aa[number_of_items_to_sort-1]
-
-
+AMOUNT_ALLOCATED = 50000 # to be implemented
 SPY = generate.StockSymbol("SPY")
 PSQ = generate.StockSymbol("PSQ" )
 SHY = generate.StockSymbol("SHY")
@@ -30,7 +18,7 @@ def define_logic():
         buyingfunc.buy(symbol="QQQ", qty=1)
     else:
         if QQQ.get_current_price() > QQQ.get_sma_value(window_length=20):
-          sorted_items = sortingFunction(indicator="RSI", window_length=10, number_of_items_to_sort=1,stockClass=[PSQ,SPY] )
+          sorted_items = sorting_util.sort(indicator="RSI", window_length=10, number_of_items_to_sort=1,stockClass=[PSQ,SPY] )
           for x in sorted_items:
             buyingfunc.buy(symbol= x.get_symbol(),qty=1)
         else:
